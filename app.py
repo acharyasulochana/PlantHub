@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from utils.router import route_request
-from database.setup import init_db, user_table
+from database.setup import init_db
 
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -9,9 +9,9 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         route_request(self, "POST", self.path)
 
+
 if __name__ == "__main__":
     init_db()
-    user_table()
     server = HTTPServer(("localhost", 8000), RequestHandler)
-    print("🚀 Server running at http://localhost:8000")
+    print("Server running at http://localhost:8000")
     server.serve_forever()

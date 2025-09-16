@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+</head>
+<body>
+  <h1>Users</h1>
+  <button onclick="document.getElementById('userForm').style.display='block'">Add User</button>
+
+  <table border="1">
+    <thead>
+      <tr>
+        {{headers}}
+      </tr>
+    </thead>
+    <tbody>
+        {{rows}}
+    </tbody>
+  </table>
+
+  <!-- Add User Popup -->
+  <div id="userForm" style="display:none;">
+    <h2>Add User</h2>
+    <form method="POST" action="/users/add">
+      <label>First Name: <input type="text" name="first_name" required></label><br><br>
+      <label>Last Name: <input type="text" name="last_name" required></label><br><br>
+      <label>Address: <input type="text" name="address" required></label><br><br>
+      <label>Email: <input type="email" name="email" required></label><br><br>
+      <button type="submit">Save</button>
+      <button type="button" onclick="document.getElementById('userForm').style.display='none'">Cancel</button>
+    </form>
+  </div>
+</body>
+</html>
