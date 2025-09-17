@@ -9,15 +9,28 @@ def get_all_user():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     cur.execute("SELECT * FROM users")
-    rows = cur.fetchall()
+    users = cur.fetchall()
     conn.close()
-    return [{"id": r[0], "first_name": r[1], "lats_name": r[2], "address": r[3], "email": r[4]} for r in rows]
+    return users
 
 
-def add_user(first_name, last_name, address, email):
+def get_user(user_id):
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM users WHERE id=?", (user_id,))
+    row = cur.fetchone()
+    conn.close()
+    return dict(row) if row else None
+
+
+def add_user(data):
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
-    cur.execute("INSERT INTO users (first_name, last_name, address, email) VALUES (?,?,?,?)", ("Sulochana", "Acharya", "Bochum", "acharya@email.com"))
+    cur.execute("INSERT INTO users (first_name, last_name, address, email) VALUES (?,?,?,?)", (data["first_name"], data["last_name"], data["address"], data["email"]),)
     conn.commit()
+    new_id = cur.lastrowid
     conn.close()
-    return {"id": cur.lastrowid, "first_name": first_name, "last_name": last_name, "address": address, "email": email}
+    return new_id
+
+

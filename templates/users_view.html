@@ -2,34 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Users</title>
+  <title>Planthub Users</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Users</h1>
-  <button onclick="document.getElementById('userForm').style.display='block'">Add User</button>
+  <h1>User Management</h1>
 
-  <table border="1">
+  <button onclick="showForm()">Add User</button>
+
+  <table id="usersTable" border="1">
     <thead>
       <tr>
-        {{headers}}
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Actions</th>
       </tr>
     </thead>
-    <tbody>
-        {{rows}}
-    </tbody>
+    <tbody></tbody>
   </table>
 
-  <!-- Add User Popup -->
-  <div id="userForm" style="display:none;">
-    <h2>Add User</h2>
-    <form method="POST" action="/users/add">
-      <label>First Name: <input type="text" name="first_name" required></label><br><br>
-      <label>Last Name: <input type="text" name="last_name" required></label><br><br>
-      <label>Address: <input type="text" name="address" required></label><br><br>
-      <label>Email: <input type="email" name="email" required></label><br><br>
-      <button type="submit">Save</button>
-      <button type="button" onclick="document.getElementById('userForm').style.display='none'">Cancel</button>
-    </form>
+  <div id="userForm" class="modal">
+    <div class="modal-content">
+      <h2 id="formTitle">Add User</h2>
+      <form id="userFormElement">
+        <input type="hidden" id="userId">
+        <label>First Name: <input type="text" id="firstName" required></label><br>
+        <label>Last Name: <input type="text" id="lastName" required></label><br>
+        <label>Address: <input type="text" id="address" required></label><br>
+        <label>Email: <input type="email" id="email" required></label><br><br>
+        <button type="submit">Save</button>
+        <button type="button" onclick="hideForm()">Cancel</button>
+      </form>
+    </div>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
