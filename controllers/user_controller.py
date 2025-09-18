@@ -1,7 +1,7 @@
 import sqlite3, os, json
 from urllib.parse import parse_qs
 from models import user_model
-from views.response import json_response
+from utils.response import json_response
 from views.html_view import html_response
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -16,7 +16,7 @@ def parse_body(handler):
     return {k: v[0] for k, v in parse_qs(body).items()}
 
 
-def list_users(handler):
+def get_all_users(handler):
     users = user_model.get_all_user()
     return json_response(handler, 200, {"users": users})
 
@@ -30,6 +30,8 @@ def get_user(handler, user_id):
 
 
 def add_users(handler):
-    data = parse_body(handler)
+    length = int(handler.headers.get("Content-Length", 0))
+    body = handler.rfile.read(length).decode()
+    data = json.loads(body)
     new_id = user_model.add_user(data)
     return json_response(handler, 201, {"message": "User created", "id": new_id})

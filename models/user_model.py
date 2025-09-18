@@ -7,9 +7,10 @@ DB_PATH = os.path.join(BASE_DIR, "planthub.db")
 
 def get_all_user():
     conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
     cur = conn.cursor()
     cur.execute("SELECT * FROM users")
-    users = cur.fetchall()
+    users = [dict(row) for row in cur.fetchall()]
     conn.close()
     return users
 

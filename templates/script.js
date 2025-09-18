@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8000/api/users";
+const API_URL = "/api/users";
 
 document.addEventListener("DOMContentLoaded", loadUsers);
 
@@ -14,7 +14,7 @@ function loadUsers() {
             <td>${user.id}</td>
             <td>${user.first_name}</td>
             <td>${user.last_name}</td>
-            <td>${user.address}</td>
+            <td>${user.Address}</td>
             <td>${user.email}</td>
             <td>
               <button onclick="editUser(${user.id})">Edit</button>
@@ -57,9 +57,18 @@ document.getElementById("userFormElement").addEventListener("submit", function(e
     email: document.getElementById("email").value,
   };
 
-
+  if (id) {
+    // Update
+    fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    }).then(() => {
+      hideForm();
+      loadUsers();
+    });
   } else {
-
+    // Create
     fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
