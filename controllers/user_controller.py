@@ -28,10 +28,31 @@ def get_user(handler, user_id):
     return json_response(handler, 404, {"error": "User not found"})
 
 
-
-def add_users(handler):
+def add_user(handler):
     length = int(handler.headers.get("Content-Length", 0))
     body = handler.rfile.read(length).decode()
     data = json.loads(body)
     new_id = user_model.add_user(data)
     return json_response(handler, 201, {"message": "User created", "id": new_id})
+
+
+def update_user(handler, user_id):
+    length = int(handler.headers.get("Content-Length", 0))
+    body = handler.rfile.read(length).decode()
+    data = json.loads(body)
+    new_id = user_model.update_user(data,user_id)
+    return json_response(handler, 201, {"message": "User created", "id": new_id})
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,8 +8,11 @@ def route_request(handler, method, path):
     elif re.match(r"^/api/users/\d+$", path) and method == "GET":
         user_id = int(path.split("/")[-1])
         return user_controller.get_user(handler, user_id)
-    elif path == "/api/user" and method == "POST":
-        return user_controller.add_users(handler)
+    elif path == "/api/users" and method == "POST":
+        return user_controller.add_user(handler)
+    elif re.match(r"^/api/users/\d+$", path) and method == "PUT":
+        user_id = int(path.split("/")[-1])
+        return user_controller.get_user(handler, user_id)
     else:
         handler.send_response(404)
         handler.send_header("Content-Type", "text/plain")

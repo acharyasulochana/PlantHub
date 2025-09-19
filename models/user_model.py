@@ -28,10 +28,17 @@ def get_user(user_id):
 def add_user(data):
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
-    cur.execute("INSERT INTO users (first_name, last_name, address, email) VALUES (?,?,?,?)", (data["first_name"], data["last_name"], data["address"], data["email"]),)
+    cur.execute("INSERT INTO users (first_name, last_name, Address, email) VALUES (?,?,?,?)", (data["first_name"], data["last_name"], data["address"], data["email"]),)
     conn.commit()
     new_id = cur.lastrowid
     conn.close()
     return new_id
 
 
+def update_user(data, user_id):
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+    cur.execute("Update users SET (first_name, last_name, Address, email) VALUES (?,?,?,?) WHERE id=?", (data["first_name"], data["last_name"], data["address"], data["email"]), user_id)
+    conn.commit()
+    conn.close()

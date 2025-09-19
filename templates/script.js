@@ -33,7 +33,7 @@ function showForm(edit = false, user = null) {
     document.getElementById("userId").value = user.id;
     document.getElementById("firstName").value = user.first_name;
     document.getElementById("lastName").value = user.last_name;
-    document.getElementById("address").value = user.address;
+    document.getElementById("address").value = user.Address;
     document.getElementById("email").value = user.email;
   } else {
     document.getElementById("formTitle").innerText = "Add User";
@@ -76,7 +76,9 @@ document.getElementById("userFormElement").addEventListener("submit", function(e
     }).then(() => {
       hideForm();
       loadUsers();
+
     });
   }
+
 });
 
