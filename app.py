@@ -19,6 +19,18 @@ class RequestHandler(BaseHTTPRequestHandler):
         else:
             self.send_error(405, "Method Not Allowed")
 
+    def do_PUT(self):
+        if self.path.startswith("/api/"):
+            route_request(self, "PUT", self.path)
+        else:
+            self.send_error(405, "Method Not Allowed")
+
+    def do_DELETE(self):
+        if self.path.startswith("/api/"):
+            route_request(self, "DELETE", self.path)
+        else:
+            self.send_error(405, "Method Not Allowed")
+
     def serve_static(self):
         """Serve HTML, CSS, JS files from frontend/"""
         if self.path == "/":
