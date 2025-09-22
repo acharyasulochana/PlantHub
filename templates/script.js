@@ -14,7 +14,7 @@ function loadUsers() {
             <td>${user.id}</td>
             <td>${user.first_name}</td>
             <td>${user.last_name}</td>
-            <td>${user.Address}</td>
+            <td>${user.address}</td>
             <td>${user.email}</td>
             <td>
               <button onclick="editUser(${user.id})">Edit</button>
@@ -33,7 +33,7 @@ function showForm(edit = false, user = null) {
     document.getElementById("userId").value = user.id;
     document.getElementById("firstName").value = user.first_name;
     document.getElementById("lastName").value = user.last_name;
-    document.getElementById("address").value = user.Address;
+    document.getElementById("address").value = user.address;
     document.getElementById("email").value = user.email;
   } else {
     document.getElementById("formTitle").innerText = "Add User";
@@ -59,6 +59,7 @@ document.getElementById("userFormElement").addEventListener("submit", function(e
 
   if (id) {
     // Update
+    console.log("Sending user data:", user);
     fetch(`${API_URL}/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -81,4 +82,19 @@ document.getElementById("userFormElement").addEventListener("submit", function(e
   }
 
 });
+
+function editUser(id) {
+  fetch(`${API_URL}/${id}`)
+    .then(res => res.json())
+    .then(user => {
+      showForm(true, user);
+    });
+}
+
+function deleteUser(id) {
+  if (confirm("Delete this user?")) {
+    fetch(`${API_URL}/${id}`, { method: "DELETE" })
+      .then(() => loadUsers());
+  }
+}
 

@@ -12,7 +12,7 @@ def route_request(handler, method, path):
         return user_controller.add_user(handler)
     elif re.match(r"^/api/users/\d+$", path) and method == "PUT":
         user_id = int(path.split("/")[-1])
-        return user_controller.get_user(handler, user_id)
+        return user_controller.update_user(handler, user_id)
     elif re.match(r"^/api/users/\d+$", path) and method == "DELETE":
         user_id = int(path.split("/")[-1])
         return user_controller.delete_user(handler, user_id)

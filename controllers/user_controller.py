@@ -40,16 +40,13 @@ def update_user(handler, user_id):
     length = int(handler.headers.get("Content-Length", 0))
     body = handler.rfile.read(length).decode()
     data = json.loads(body)
-    new_id = user_model.update_user(data,user_id)
-    return json_response(handler, 201, {"message": "User created", "id": new_id})
+    user_model.update_user(data,user_id)
+    return json_response(handler, 200, {"message": "User updated"})
 
 
 def delete_user(handler, user_id):
-    length = int(handler.headers.get("Content-Length", 0))
-    body = handler.rfile.read(length).decode()
-    data = json.loads(body)
-    new_id = user_model.delete_user(user_id)
-    return json_response(handler, 201, {"message": "User created", "id": new_id})
+    user_model.delete_user(user_id)
+    return json_response(handler, 200, {"message": "User deleted"})
 
 
 

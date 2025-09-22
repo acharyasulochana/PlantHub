@@ -6,6 +6,7 @@ import os
 
 TEMPLATE_DIR = os.path.join(os.path.dirname(__file__), "templates")
 
+
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path.startswith("/api/"):
@@ -20,13 +21,13 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_error(405, "Method Not Allowed")
 
     def do_PUT(self):
-        if self.path.startswith("/api/"):
+        if self.path.startswith("/api/users"):
             route_request(self, "PUT", self.path)
         else:
             self.send_error(405, "Method Not Allowed")
 
     def do_DELETE(self):
-        if self.path.startswith("/api/"):
+        if self.path.startswith("/api/users"):
             route_request(self, "DELETE", self.path)
         else:
             self.send_error(405, "Method Not Allowed")
@@ -56,6 +57,9 @@ class RequestHandler(BaseHTTPRequestHandler):
                 self.wfile.write(f.read())
         else:
             self.send_error(404, "File Not Found")
+
+    def handle_request(self):
+        pass
 
 
 if __name__ == "__main__":
