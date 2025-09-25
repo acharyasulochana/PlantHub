@@ -61,6 +61,14 @@ class RequestHandler(BaseHTTPRequestHandler):
     def handle_request(self):
         pass
 
+    def _set_headers(self, status=200, content_type="application/json"):
+        self.send_response(status)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Access-Control-Allow-Origin", "*")  # ✅ allow React
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.end_headers()
+
 
 if __name__ == "__main__":
     init_db()
