@@ -16,6 +16,14 @@ export async function addUser(user) {
   return res.json();
 }
 
+export async function editUser(id) {
+  const res = await fetch(`${API_BASE}/users/${id}`, {
+    method: "PUT",
+  });
+  if (!res.ok) throw new Error("Failed to edit user");
+  return res.json();
+}
+
 export async function deleteUser(id) {
   const res = await fetch(`${API_BASE}/users/${id}`, {
     method: "DELETE",
