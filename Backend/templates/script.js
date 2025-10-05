@@ -17,8 +17,8 @@ function loadUsers() {
             <td>${user.address}</td>
             <td>${user.email}</td>
             <td>
-              <button onclick="editUser(${user.id})">Edit</button>
-              <button onclick="deleteUser(${user.id})">Delete</button>
+              <button id = "editUser" onclick="editUser(${user.id})">Edit</button>
+              <button id = "deleteUser" onclick="deleteUser(${user.id})">Delete</button>
             </td>
           </tr>`;
         tbody.innerHTML += row;

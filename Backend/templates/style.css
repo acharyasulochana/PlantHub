@@ -1,3 +1,42 @@
+
+ .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #A7C1A8;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+      text-decoration: none;
+    }
+
+    /* Right section (links) */
+    .nav-links a {
+      margin-left: 20px;
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+
+    }
+
+    .nav-links a:hover {
+      color: #819A91;
+    }
+
+
+
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
@@ -11,12 +50,14 @@ button {
   padding: 6px 12px;
   margin: 4px;
   cursor: pointer;
+  color: #80A1BA;
 }
 
 table {
   margin-top: 20px;
   border-collapse: collapse;
   width: 100%;
+
 }
 
 th, td {
@@ -38,4 +79,26 @@ th, td {
   padding: 20px;
   width: 300px;
   border-radius: 8px;
+}
+
+#addUser {
+    background-color: #91C4C3;
+    border: 2px solid #91C4C3;
+    border-radius: 7px;
+}
+
+#editUser {
+    background-color: #91C4C3;
+    border: 2px solid #91C4C3;
+    border-radius: 7px;
+}
+
+#deleteUser {
+    background-color: #91C4C3;
+    border: 2px solid #91C4C3;
+    border-radius: 7px;
+}
+
+#userTr {
+    background-color: #B4DEBD;
 }

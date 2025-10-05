@@ -6,13 +6,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="navbar">
+    <div class="nav-left">
+      <a href="#" class="logo">Plant Hub</a>
+    </div>
+    <div class="nav-links">
+      <a href="#">User</a>
+      <a href="#">Admin</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
   <h1>User Management</h1>
 
-  <button onclick="showForm()">Add User</button>
+  <button id= "addUser" onclick="showForm()">Add User</button>
 
   <table id="usersTable" border="1">
     <thead>
-      <tr>
+      <tr id="userTr">
         <th>ID</th>
         <th>First Name</th>
         <th>Last Name</th>
@@ -26,7 +36,7 @@
 
   <div id="userForm" class="modal">
     <div class="modal-content">
-      <h2 id="formTitle">Add User</h2>
+      <button id="formTitle">Add User</button>
       <form id="userFormElement">
         <input type="hidden" id="userId">
         <label>First Name: <input type="text" id="firstName" required></label><br>
