@@ -99,6 +99,20 @@ th, td {
     border-radius: 7px;
 }
 
-#userTr {
-    background-color: #B4DEBD;
+#submitUser{
+    background-color: #FA812F;
+    border: 2px solid #FA812F;
+    border-radius: 7px;
+}
+
+#cancelUser{
+    background-color: #8ABB6C;
+    border: 2px solid #8ABB6C;
+    border-radius: 7px;
+}
+
+#formTitle{
+    text-align: center;
+    font-size: 20px;
+
 }

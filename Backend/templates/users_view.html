@@ -36,15 +36,15 @@
 
   <div id="userForm" class="modal">
     <div class="modal-content">
-      <button id="formTitle">Add User</button>
+      <div id="formTitle">Add User</div>
       <form id="userFormElement">
         <input type="hidden" id="userId">
         <label>First Name: <input type="text" id="firstName" required></label><br>
         <label>Last Name: <input type="text" id="lastName" required></label><br>
         <label>Address: <input type="text" id="address" required></label><br>
         <label>Email: <input type="email" id="email" required></label><br><br>
-        <button type="submit">Save</button>
-        <button type="button" onclick="hideForm()">Cancel</button>
+        <button id="submitUser" type="submit">Save</button>
+        <button id= "cancelUser" type="button" onclick="hideForm()">Cancel</button>
       </form>
     </div>
   </div>
